@@ -14,6 +14,10 @@ public class VictoryState {
         this.fieldThree = fieldThree;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public boolean isVictorious() {
 
         boolean allFieldMatches = fieldOne == fieldTwo

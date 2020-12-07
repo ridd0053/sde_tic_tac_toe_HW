@@ -66,8 +66,9 @@ public class GameEngine {
 
             String symbol = getPlayerSymbol(player);
             String name = player.getPlayerName();
-            String msg = String.format("Player %s won! Congratulations %s",
-                    symbol, name);
+            String winningType = victoryState.getName();
+            String msg = String.format("Player %s won with '%s'! Congratulations %s",
+                    symbol, winningType, name);
             Console.print(msg);
 
             System.exit(0);
