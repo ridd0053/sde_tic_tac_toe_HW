@@ -1,5 +1,8 @@
 package com.hz;
 
+import com.hz.players.DummyPlayer;
+import com.hz.players.TicTacToe;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,7 +11,7 @@ public class Main {
         GameEngine engine = new GameEngine();
 
         // player 1
-        TicTacToe playerOne = new PlayerLevi(9, 9);
+        TicTacToe playerOne = new DummyPlayer();
         playerOne.acceptSymbol(0);
 
         // player 2

@@ -1,4 +1,4 @@
-package com.hz;
+package com.hz.players;
 
 public interface TicTacToe {
 

@@ -1,5 +1,7 @@
 package com.hz;
 
+import com.hz.players.TicTacToe;
+
 public class GameEngine {
 
     private int[] state;
@@ -30,6 +32,8 @@ public class GameEngine {
 
         // game loop
         while(true) {
+
+            this.round++;
 
             playMove(this.playerOne);
             printState();

@@ -1,4 +1,6 @@
-package com.hz;
+package com.hz.players;
+
+import com.hz.players.TicTacToe;
 
 public class DummyPlayer implements TicTacToe {
 
