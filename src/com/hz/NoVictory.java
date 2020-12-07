@@ -1,5 +1,6 @@
 package com.hz;
 
+// Introduce Null-Object
 public class NoVictory extends VictoryState {
 
     public NoVictory() {

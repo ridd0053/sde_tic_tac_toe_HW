@@ -2,9 +2,11 @@ package com.hz.players;
 
 public interface TicTacToe {
 
-    // init
-    void acceptSymbol(int symbol);
+    String getPlayerName();
 
+    // init
+    void setSymbol(int symbol);
+    int getSymbol();
 
     // game loop
     void accept(int[] state);
@@ -13,9 +15,4 @@ public interface TicTacToe {
 
     int[] getChangedState();
     // game loop end
-
-    // graphics
-    String[] getLooseImage();
-
-    String[] getVictoryImage();
 }

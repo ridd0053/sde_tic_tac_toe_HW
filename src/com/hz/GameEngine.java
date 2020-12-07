@@ -27,7 +27,7 @@ public class GameEngine {
 
         this.setInitState();
 
-        // print start state
+        this.printPlayerInfo();
         this.printState();
 
         // game loop
@@ -41,14 +41,34 @@ public class GameEngine {
         }
     }
 
+    private void printPlayerInfo() {
+
+        String playerOneSymbol = getPlayerSymbol(this.playerOne);
+        String playerTwoSymbol = getPlayerSymbol(this.playerTwo);
+
+        String msg = String.format("Player %s: '%s' vs. Player %s: '%s'",
+                playerOneSymbol, this.playerOne.getPlayerName(),
+                playerTwoSymbol, this.playerTwo.getPlayerName());
+        Console.print(msg);
+    }
+
+    private String getPlayerSymbol(TicTacToe playerOne) {
+        return Console.s(playerOne.getSymbol());
+    }
+
+
     private void performPlayerMove(TicTacToe player) {
         playMove(player);
         printState();
 
         VictoryState victoryState = this.getVictoryState();
         if(victoryState.isVictorious()) {
-            player.getVictoryImage();
-            player.getLooseImage();
+
+            String symbol = getPlayerSymbol(player);
+            String name = player.getPlayerName();
+            String msg = String.format("Player %s won! Congratulations %s",
+                    symbol, name);
+            Console.print(msg);
 
             System.exit(0);
         }
@@ -95,10 +115,9 @@ public class GameEngine {
     }
 
     private void printState() {
-        Console.printLine("Round #" + this.round);
+        Console.print("Round #" + this.round);
         Console.print(state);
     }
-
 
     private void setInitState() {
         this.state[0] = -1;
@@ -113,9 +132,7 @@ public class GameEngine {
 
         this.round = 0;
 
-        this.playerOne.acceptSymbol(0);
-        this.playerTwo.acceptSymbol(1);
-
+        this.playerOne.setSymbol(0);
+        this.playerTwo.setSymbol(1);
     }
-
 }
