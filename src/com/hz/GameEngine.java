@@ -61,12 +61,12 @@ public class GameEngine {
         playMove(player);
         printState();
 
-        VictoryState victoryState = this.getVictoryState();
-        if(victoryState.isVictorious()) {
+        WinningState winningState = this.getWinningState();
+        if(winningState.isAchieved()) {
 
             String symbol = getPlayerSymbol(player);
             String name = player.getPlayerName();
-            String winningType = victoryState.getName();
+            String winningType = winningState.getName();
             String msg = String.format("Player %s won with '%s'! Congratulations %s",
                     symbol, winningType, name);
             Console.print(msg);
@@ -83,36 +83,36 @@ public class GameEngine {
         this.state = player.getChangedState();
     }
 
-    private VictoryState getVictoryState() {
+    private WinningState getWinningState() {
 
-        VictoryState[] victoryStates = new VictoryState[8];
+        WinningState[] winningStates = new WinningState[8];
 
-        victoryStates[0] = new VictoryState("First row",
+        winningStates[0] = new WinningState("First row",
                 this.state[0], this.state[1], this.state[2]);
-        victoryStates[1] = new VictoryState("Second row",
+        winningStates[1] = new WinningState("Second row",
                 this.state[3], this.state[4], this.state[5]);
-        victoryStates[2] = new VictoryState("Third row",
+        winningStates[2] = new WinningState("Third row",
                 this.state[6], this.state[7], this.state[8]);
 
-        victoryStates[3] = new VictoryState("First column",
+        winningStates[3] = new WinningState("First column",
                 this.state[0], this.state[3], this.state[6]);
-        victoryStates[4] = new VictoryState("Second column",
+        winningStates[4] = new WinningState("Second column",
                 this.state[1], this.state[4], this.state[7]);
-        victoryStates[5] = new VictoryState("Third column",
+        winningStates[5] = new WinningState("Third column",
                 this.state[2], this.state[5], this.state[8]);
 
 
-        victoryStates[6] = new VictoryState("First diagonal",
+        winningStates[6] = new WinningState("First diagonal",
                 this.state[0], this.state[4], this.state[8]);
-        victoryStates[7] = new VictoryState("Second diagonal",
+        winningStates[7] = new WinningState("Second diagonal",
                 this.state[6], this.state[4], this.state[2]);
 
-        for(VictoryState state : victoryStates) {
+        for(WinningState winningState : winningStates) {
 
-            if(state.isVictorious()) return state;
+            if(winningState.isAchieved()) return winningState;
         }
 
-        return new NoVictory();
+        return new NoWinning();
     }
 
     private void printState() {

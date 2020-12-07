@@ -1,15 +1,15 @@
 package com.hz;
 
 // Introduce Null-Object
-public class NoVictory extends VictoryState {
+public class NoWinning extends WinningState {
 
-    public NoVictory() {
+    public NoWinning() {
 
         super("No Victory", -1, -1, -1);
     }
 
     @Override
-    public boolean isVictorious() {
+    public boolean isAchieved() {
         return false;
     }
 }

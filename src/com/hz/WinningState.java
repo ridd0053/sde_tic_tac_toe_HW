@@ -1,13 +1,13 @@
 package com.hz;
 
-public class VictoryState {
+public class WinningState {
 
     private String name;
     private int fieldOne;
     private int fieldTwo;
     private int fieldThree;
 
-    public VictoryState(String name, int fieldOne, int fieldTwo, int fieldThree) {
+    public WinningState(String name, int fieldOne, int fieldTwo, int fieldThree) {
         this.name = name;
         this.fieldOne = fieldOne;
         this.fieldTwo = fieldTwo;
@@ -18,7 +18,7 @@ public class VictoryState {
         return this.name;
     }
 
-    public boolean isVictorious() {
+    public boolean isAchieved() {
 
         boolean allFieldMatches = fieldOne == fieldTwo
                 && fieldOne == fieldThree;
