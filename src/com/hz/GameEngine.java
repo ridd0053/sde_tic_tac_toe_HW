@@ -35,28 +35,25 @@ public class GameEngine {
 
             this.round++;
 
-            playMove(this.playerOne);
-            printState();
+            performPlayerMove(this.playerOne);
 
-            if(this.isFinished()) {
-                this.playerOne.getVictoryImage();
-                this.playerTwo.getLooseImage();
-
-                System.exit(0);
-            }
-
-            playMove(this.playerTwo);
-            printState();
-
-            if(this.isFinished()) {
-                this.playerTwo.getVictoryImage();
-                this.playerOne.getLooseImage();
-
-                System.exit(0);
-            }
-
+            performPlayerMove(this.playerTwo);
         }
     }
+
+    private void performPlayerMove(TicTacToe player) {
+        playMove(player);
+        printState();
+
+        VictoryState victoryState = this.getVictoryState();
+        if(victoryState.isVictorious()) {
+            player.getVictoryImage();
+            player.getLooseImage();
+
+            System.exit(0);
+        }
+    }
+
 
     private void playMove(TicTacToe player) {
 
@@ -65,24 +62,36 @@ public class GameEngine {
         this.state = player.getChangedState();
     }
 
-    private boolean isFinished() {
+    private VictoryState getVictoryState() {
 
-        // first row
-        return this.state[0] == this.state[1]
-                && this.state[1] == this.state[2]
-                && this.state[0] != -1;
+        VictoryState[] victoryStates = new VictoryState[8];
 
-        // second row
+        victoryStates[0] = new VictoryState("First row",
+                this.state[0], this.state[1], this.state[2]);
+        victoryStates[1] = new VictoryState("Second row",
+                this.state[3], this.state[4], this.state[5]);
+        victoryStates[2] = new VictoryState("Third row",
+                this.state[6], this.state[7], this.state[8]);
 
-        // third row
+        victoryStates[3] = new VictoryState("First column",
+                this.state[0], this.state[3], this.state[6]);
+        victoryStates[4] = new VictoryState("Second column",
+                this.state[1], this.state[4], this.state[7]);
+        victoryStates[5] = new VictoryState("Third column",
+                this.state[2], this.state[5], this.state[8]);
 
-        // first column
 
-        // second column
+        victoryStates[6] = new VictoryState("First diagonal",
+                this.state[0], this.state[4], this.state[8]);
+        victoryStates[7] = new VictoryState("Second diagonal",
+                this.state[6], this.state[4], this.state[2]);
 
-        // third column
+        for(VictoryState state : victoryStates) {
 
-        // strike
+            if(state.isVictorious()) return state;
+        }
+
+        return new NoVictory();
     }
 
     private void printState() {
