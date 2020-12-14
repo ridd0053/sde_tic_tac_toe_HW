@@ -1,6 +1,7 @@
 package com.hz;
 
 import com.hz.players.DummyPlayer;
+import com.hz.players.NewPlayer;
 import com.hz.players.TicTacToe;
 
 public class Main {
@@ -14,8 +15,8 @@ public class Main {
         playerOne.setSymbol(0);
 
         // player 2
-        TicTacToe playerTwo = new DummyPlayer();
-        playerOne.setSymbol(1);
+        TicTacToe playerTwo = new NewPlayer();
+        playerTwo.setSymbol(1);
 
         // Strategy Design Pattern
         engine.setPlayerOne(playerOne);
